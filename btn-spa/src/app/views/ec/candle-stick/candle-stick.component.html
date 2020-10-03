@@ -1,0 +1,57 @@
+<div class="card">
+    <div class="card-body">
+       <div class="row">
+           <div class="col-md-3">
+               <button (click)='exportExcel()' class="btn btn-outline-danger">Export Excel</button> <br>
+               <button class="btn btn-outline-primary mt-3">Operation: {{button?.worker.operation}}</button>
+            </div>
+           <div class="col-md-5">
+               <div style="display: block">
+                <canvas baseChart
+                    [datasets]="barChartData"
+                    [labels]="barChartLabels"
+                    [options]="barChartOptions"
+                    [plugins]="barChartPlugins"
+                    [legend]="barChartLegend"
+                    [colors]="barChartColors"
+                    [chartType]="barChartType">
+                </canvas>
+                </div>
+           </div>
+           <div class="col-md-4">
+               <div class="card">
+                   <div class="card-body">
+                        <p *ngIf="standard <= tt">
+                            <label class="font-weight-bold text-green">Standard CT ({{standard}}) <= TT ({{tt}}) </label><br>
+                                    <span class="font-weight-bold text-green">Reach the production standard.</span>
+                        </p>
+                        <p *ngIf="standard > tt">
+                            <label class="font-weight-bold text-danger">Standard CT ({{standard}}) > TT ({{tt}})</label> <br>
+                            <span class="font-weight-bold text-danger">Please adjust Standard CT.</span>
+                        </p>
+                       <p *ngIf="avg <= standard">
+                           <label class="font-weight-bold text-green"> AVG CT ({{avg}}) <= Standard CT ({{standard}})</label> <br>
+                           <span class="text-green">Reach the production standard.</span>
+                       </p>
+                        <p *ngIf="avg > standard">
+                            <label class="font-weight-bold text-danger">AVG CT ({{avg}}) > Standard CT ({{standard}})</label> <br>
+                            <span class="font-weight-bold text-danger">Please check if the worker has any trouble in working!</span>
+                        </p>
+                       <p *ngIf="latest < standard">
+                            <label class="font-weight-bold text-green">Latest CT ({{latest}}) < Standard CT ({{standard}})</label> <br>
+                            <span class="font-weight-bold text-green">Reach the production standard.</span>
+                       </p>
+                        <p *ngIf="latest > standard">
+                            <label class="font-weight-bold text-danger">Latest CT ({{latest}}) > Standard CT ({{standard}})</label> <br>
+                            <span class="font-weight-bold text-danger">The performance is under the criteria. <br>
+                            Please check if there is another way to solve the problem.</span>
+                        </p>
+                   </div>
+               </div>
+           </div>
+       </div>
+    </div>
+</div>
+<script id="index" type="text/x-template">
+    <div id='templateWrap' style="background-color: ${point.text}; border-radius: 3px;"><span>${point.y}</span></div>
+</script>

@@ -1,0 +1,37 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <!-- <div class="card-header">
+        <h3 class="card-title"><i class="fas fa-users"></i> User List
+        </h3>
+      </div> -->
+            <!-- /.card-header -->
+            <div class="card-body table-responsive p-0">
+                <ejs-grid #grid [dataSource]="wokersData" allowPaging='true' gridLines='Both' (created)='createdUsers()'
+                    (dataBound)='dataBound()' (actionBegin)="actionBegin($event)"
+                    (actionComplete)="actionComplete($event)" [toolbar]='toolbar' [pageSettings]='pageSettings'
+                    allowExcelExport='true' (toolbarClick)='toolbarClick($event)' [editSettings]='editSettings'>
+                    <e-columns>
+                        <e-column field="id" width="80" textAlign='Center' isPrimaryKey="true" headerText="ID">
+                            <ng-template #template let-data>
+                                {{NO(data.index)}}
+                            </ng-template>
+                        </e-column>
+                        <e-column field="fullName" textAlign='Center' headerText="Full Name"> </e-column>
+                        <e-column field="workerCode" textAlign='Center' headerText="Worker Code"> </e-column>
+                        <e-column field="operation" textAlign='Center' headerText="Operation"> </e-column>
+                        <e-column field="building" textAlign='Center' headerText="Building">
+                            <ng-template #editTemplate let-data>
+                                <ejs-dropdownlist #positionDropdownlist [dataSource]='buildings'
+                                    [value]="data.buildingID" [(ngModel)]="data.buildingID" [fields]='fieldsBuilding' [allowFiltering]='true'
+                                    (change)='onChangeBuilding($event,data)'>
+                                </ejs-dropdownlist>
+                            </ng-template>
+                        </e-column>
+                    </e-columns>
+                </ejs-grid>
+            </div>
+            <!-- /.card-body -->
+        </div>
+    </div>
+</div>

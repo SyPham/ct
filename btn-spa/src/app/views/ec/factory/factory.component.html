@@ -1,0 +1,35 @@
+<div class="row" style="margin-top:50px">
+        <div class="col-lg-12 m-auto">
+           <table class="table">
+                                <tr *ngFor="let factory of buildings">
+                                        <!-- Company -->
+                                        <td class="company my-align">
+                                                <input type='button'class="btn btn-danger" [value]='factory.entity.name' />
+                                        </td>
+
+                                        <td class="border-0 pt-0 pb-0">
+                                                <tr class="right" *ngFor="let dept of factory.childNodes">
+                                                        <!-- Department -->
+                                                        <td class="department my-align">
+                                                                <input type='button'class="btn btn-warning" [value]='dept.entity.name' />
+                                                        </td>
+                                                        <td class="border-0 pt-0 pb-0">
+                                                                <tr class="building-line" *ngFor="let building of dept.childNodes">
+                                                                        <!-- Building -->
+                                                                        <td class="building my-align">
+                                                                                <input type='button'class="btn btn-success" [value]='building.entity.name' />
+                                                                        </td>
+                                                                        <td class="border-0 pt-0 pb-0">
+                                                                <tr>
+                                                                <!-- Line -->
+                                                                        <td class="line my-align" *ngFor="let line of building.childNodes">
+                                                                                <input [routerLink]="['/ec/setting/line/worker-list/' + line.entity.name]"  type='button'class="btn btn-primary" [value]='line.entity.name' />
+                                                                        </td>
+                                                                </tr>
+                                                        </td>
+                                                </tr>
+                                        </td>
+                                </tr>
+           </table>
+        </div>
+</div>

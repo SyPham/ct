@@ -1,0 +1,13 @@
+.my-align {
+    vertical-align: middle;
+    text-align: center;
+}
+/* table tbody tr {
+    border:none;
+}
+*/
+table td {
+    border:none!important;
+    border-top: none!important;
+} 
+
